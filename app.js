@@ -4,12 +4,12 @@ const config = require('./utils/config')
 const logger = require('./utils/logger')
 const middleware = require('./utils/middleware')
 const notesRouter = require('./controllers/notes')
+const cors = require('cors')
 
 const app = express()
 
 // logger.info('connecting to', config.MONGODB_URI)
 logger.info('connecting to mongodb')
-
 
 mongoose
   .connect(config.MONGODB_URI)
@@ -20,6 +20,7 @@ mongoose
     logger.error('error connection to MongoDB:', error.message)
   })
 
+app.use(cors())  // Add this line before other middleware
 app.use(express.static('dist'))
 app.use(express.json())
 app.use(middleware.requestLogger)
