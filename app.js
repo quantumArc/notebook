@@ -7,7 +7,9 @@ const notesRouter = require('./controllers/notes')
 
 const app = express()
 
-logger.info('connecting to', config.MONGODB_URI)
+// logger.info('connecting to', config.MONGODB_URI)
+logger.info('connecting to mongodb')
+
 
 mongoose
   .connect(config.MONGODB_URI)
